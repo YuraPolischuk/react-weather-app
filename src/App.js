@@ -6,7 +6,8 @@ function App() {
     <div className="App">
       <Weather />
       <footer>
-        This project was coded by Yurii Polihchuk and is open-sourced on GitHub
+        This project was coded by Yurii Polihchuk and is open-sourced on{" "}
+        <a href="https://github.com/YuraPolischuk/react-weather-app">GitHub</a>{" "}
         and hosted on Netlify
       </footer>
     </div>

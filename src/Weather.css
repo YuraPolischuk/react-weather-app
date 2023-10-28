@@ -47,3 +47,8 @@
 .Weather canvas {
   margin: 10px auto;
 }
+
+.temperature-container {
+  align-items: center;
+  margin-top: 30px;
+}

@@ -4,6 +4,7 @@ import "./Weather.css";
 import FormatDate from "./FormatDate";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherForecast from "./WeatherForecast";
 
 function Weather() {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -12,6 +13,7 @@ function Weather() {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
+      coordinates: response.data.coord,
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
@@ -56,14 +58,16 @@ function Weather() {
         <h1>{weatherData.city}</h1>
         <ul>
           <li>
-            <FormatDate date={weatherData.date} />
+            <FormatDate date={weatherData.date} size={52} />
           </li>
           <li>{weatherData.description}</li>
         </ul>
         <div className="row indicators">
-          <div className="col-6">
-            <WeatherIcon data={weatherData.iconUrl} />
-            <WeatherTemperature celsius={weatherData.temperature} />
+          <div className="col-lg-6 col-md-6 col-sm-8">
+            <div className="temperature-container d-flex justify-content-start">
+              <WeatherIcon data={weatherData.iconUrl} size={60} />
+              <WeatherTemperature celsius={weatherData.temperature} />
+            </div>
           </div>
           <div className="col-6">
             <ul>
@@ -72,6 +76,7 @@ function Weather() {
             </ul>
           </div>
         </div>
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
